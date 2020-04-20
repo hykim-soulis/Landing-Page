@@ -60,7 +60,6 @@ nav_ul.addEventListener('click', respondToTheClick)
     all other sections 
 */
 function toggleClass(n){
-    console.log(sections_len)
     let sec_index = n-1;
     for(i = 0; i < sections_len ; i++){
         if (i === sec_index) {
@@ -70,3 +69,22 @@ function toggleClass(n){
         }
     }
 }
+
+/* 
+    add and remove the active class to the section while scrolling 
+*/
+function scrollftn(e) {
+
+    let halfwindowHeight = window.innerHeight/2;
+    let y = window.scrollY + halfwindowHeight;
+    
+    sections.forEach(function(section){
+        if(y > section.offsetTop && y < section.offsetTop + section.offsetHeight) {
+            section.classList.add('your-active-class');
+        } else {
+            section.classList.remove('your-active-class');
+        }
+    })
+}
+
+document.addEventListener('scroll', scrollftn);
